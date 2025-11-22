@@ -238,7 +238,11 @@ const imageList = [
   "https://media1.tenor.com/m/CuQRMd3TXV0AAAAd/panda-animal.gif",
   "https://media1.tenor.com/m/IH5tzJxWJHkAAAAd/funny-animals-dogs.gif",
   "https://media1.tenor.com/m/ppNCvD5sbp4AAAAd/elmo-thunder.gif",
-  "https://media1.tenor.com/m/y-sCw-1ZxQEAAAAd/dog-dogs.gif"
+  "https://media1.tenor.com/m/y-sCw-1ZxQEAAAAd/dog-dogs.gif",
+  "https://media1.tenor.com/m/gm1YArVab98AAAAd/winter-snow.gif",
+  "https://media1.tenor.com/m/a6BJsB4KADMAAAAd/wrapped-up-bundled-up.gif",
+  "https://media1.tenor.com/m/XcLi1cC9kgIAAAAd/husky-fridge.gif",
+
 ];
 
 function displayRandomImages() {
