@@ -18,7 +18,7 @@ The Weather Dashboard is a sleek, easy-to-use web app that lets you instantly ch
 ## **Screenshot**
 
 ![Weather App Inspo](./Assets/screenshots/06-server-side-apis-homework-demo.png)
-
+![Final Weather App](./Assets/screenshots/weatherdash%20final.png)
 
 ---
 
