@@ -22,6 +22,11 @@ const currentFeelsLike = document.getElementById("current-feels-like");
 const forecastSection = document.getElementById("forecast");
 const forecastGrid = document.getElementById("forecast-grid");
 
+let currentUnit = "C";           // "C" or "F"
+let lastWeatherData = null;      // store last current weather response
+let lastForecastData = null;     // store last forecast response
+
+
 // ================= Helpers =================
 function setMessage(text, type = "info") {
   if (!text) {
@@ -98,6 +103,9 @@ async function fetchForecast(lat, lon) {
 
 // ================= Rendering =================
 function renderCurrentWeather(data) {
+  // store latest data so we can re-render on unit toggle
+  lastWeatherData = data;
+
   const {
     name,
     sys: { country },
@@ -110,10 +118,19 @@ function renderCurrentWeather(data) {
   const [conditions] = weather;
   const iconUrl = `https://openweathermap.org/img/wn/${conditions.icon}@2x.png`;
 
+  // conversions
+  const tempC = Math.round(temp);
+  const feelsC = Math.round(feels_like);
+  const tempF = Math.round((temp * 9) / 5 + 32);
+  const feelsF = Math.round((feels_like * 9) / 5 + 32);
+
+  const displayTemp = currentUnit === "C" ? `${tempC}°C` : `${tempF}°F`;
+  const displayFeels = currentUnit === "C" ? `${feelsC}°C` : `${feelsF}°F`;
+
   currentCity.textContent = `${name}, ${country}`;
   currentDate.textContent = `Updated: ${formatDate(dt)}`;
-  currentTemp.textContent = `${Math.round(temp)}°C`;
-  currentFeelsLike.textContent = `${Math.round(feels_like)}°C`;
+  currentTemp.textContent = displayTemp;
+  currentFeelsLike.textContent = displayFeels;
   currentDescription.textContent = conditions.description;
   currentIcon.src = iconUrl;
   currentIcon.alt = conditions.description;
@@ -123,9 +140,13 @@ function renderCurrentWeather(data) {
   currentWeatherSection.classList.remove("d-none");
 }
 
+
 function renderForecast(data) {
+  //store latest forecast
+    lastForecastData = data;  
   // 5-day forecast: one entry per day around midday
   const dailyMap = new Map();
+  
 
   data.list.forEach((entry) => {
     const date = new Date(entry.dt * 1000);
@@ -150,6 +171,16 @@ function renderForecast(data) {
 
     const max = Math.round(entry.main.temp_max);
     const min = Math.round(entry.main.temp_min);
+
+       const maxDisplay =
+      currentUnit === "C"
+        ? `${max}°C`
+        : `${Math.round((max * 9) / 5 + 32)}°F`;
+
+    const minDisplay =
+      currentUnit === "C"
+        ? `${min}°C`
+        : `${Math.round((min * 9) / 5 + 32)}°F`;
 
     const col = document.createElement("div");
     col.className = "col-6 col-md-4 col-lg-2";
@@ -242,4 +273,22 @@ function displayRandomImages() {
 document.addEventListener("DOMContentLoaded", displayRandomImages);
 // ================= Init =================
 searchForm.addEventListener("submit", handleSearchSubmit);
+
+// ================= Unit Toggle =================
+const unitToggle = document.getElementById("unit-toggle");
+const unitLabel = unitToggle.querySelector(".unit-label");
+
+unitToggle.addEventListener("click", () => {
+  // flip unit
+  currentUnit = currentUnit === "C" ? "F" : "C";
+
+  // update label text
+  unitLabel.textContent =
+    currentUnit === "C" ? "Switch to °F" : "Switch to °C";
+
+  // re-render using stored data (no extra API calls)
+  if (lastWeatherData) renderCurrentWeather(lastWeatherData);
+  if (lastForecastData) renderForecast(lastForecastData);
+});
+
 

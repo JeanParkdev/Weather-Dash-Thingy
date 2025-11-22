@@ -167,3 +167,13 @@ header h1 {
     height: 140px;
   }
 }
+
+/* Farengheit/Celsius toggle */
+#unit-toggle {
+  border-radius: 999px;
+  padding-inline: 0.9rem;
+}
+
+#unit-toggle i {
+  font-size: 1rem;
+}
