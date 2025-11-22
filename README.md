@@ -11,6 +11,7 @@ The Weather Dashboard is a sleek, easy-to-use web app that lets you instantly ch
 * 🌎 **City Search:** Type any city and get instant weather data
 * 📅 **Multi-Day Forecast:** See what's coming up next
 * 🐶 **Animal Weather Gifs:** Look at cute animal gifs
+* 🌡️ **Celcius to Farenheit Converter:** Convert the weather data from Celcius to Farenheit
 
 ---
 

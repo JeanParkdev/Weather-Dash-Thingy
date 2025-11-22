@@ -142,11 +142,11 @@ function renderCurrentWeather(data) {
 
 
 function renderForecast(data) {
-  //store latest forecast
-    lastForecastData = data;  
+  // store latest forecast
+  lastForecastData = data;
+
   // 5-day forecast: one entry per day around midday
   const dailyMap = new Map();
-  
 
   data.list.forEach((entry) => {
     const date = new Date(entry.dt * 1000);
@@ -172,7 +172,7 @@ function renderForecast(data) {
     const max = Math.round(entry.main.temp_max);
     const min = Math.round(entry.main.temp_min);
 
-       const maxDisplay =
+    const maxDisplay =
       currentUnit === "C"
         ? `${max}°C`
         : `${Math.round((max * 9) / 5 + 32)}°F`;
@@ -193,8 +193,8 @@ function renderForecast(data) {
       <div class="date">${date.toLocaleDateString()}</div>
       <img src="${iconUrl}" alt="${entry.weather[0].description}">
       <div class="temps mt-1">
-        <span class="max">${max}°C</span>
-        <span class="min">${min}°C</span>
+        <span class="max">${maxDisplay}</span>
+        <span class="min">${minDisplay}</span>
       </div>
     `;
 
@@ -204,6 +204,7 @@ function renderForecast(data) {
 
   forecastSection.classList.remove("d-none");
 }
+
 
 // ================= Event Handlers =================
 async function handleSearchSubmit(e) {
