@@ -2,7 +2,7 @@
 
 ## **Description**
 
-The Weather Dashboard is an easy-to-use web app that lets you instantly check the forecast for any city around the world. It delivers current conditions, multi-day forecasts, and visual weather cues to keep things clear and engaging. It also includes a variety of cute weather related gifs (that change with each refresh) to keep you smiling, and a Farenheit to Celcius converter for our friends in different time zones! 
+The Weather Dashboard is an easy-to-use web app that lets you instantly check the forecast for any city around the world. It delivers current conditions, multi-day forecasts, and visual weather cues to keep things clear. It also includes a variety of cute weather related gifs (that change with each refresh) to keep you smiling and engaged. There is also a Farenheit to Celcius converter for our friends in different time zones or are curious! 
 
 Whether you're planning your day or packing for a trip, this dashboard makes weather-watching simple and enjoyable.
 
@@ -18,8 +18,10 @@ Whether you're planning your day or packing for a trip, this dashboard makes wea
 ---
 
 ## **Screenshot**
-
+Weather App Inspo:
 ![Weather App Inspo](./Assets/screenshots/06-server-side-apis-homework-demo.png)
+
+Final Weather Dashboard:
 ![Final Weather App](./Assets/screenshots/weatherdash%20final.png)
 
 ---
@@ -29,7 +31,7 @@ Whether you're planning your day or packing for a trip, this dashboard makes wea
 * **HTML5**
 * **CSS3**
 * **JavaScript**
-* **Boostrap**
+* **Bootstrap**
 * **Weather APIs** (e.g., OpenWeatherMap)
 
 ---
