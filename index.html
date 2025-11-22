@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Dashboard</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+  crossorigin="anonymous">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="Assets/css/styles.css" />
+</head>
+
+<body class="bg-weather d-flex flex-column min-vh-100">
+  <!-- Header section -->
+  <header class="py-4 text-center text-white">
+    <h1 class="display-5 fw-semibold mb-1">Weather Dashboard</h1>
+    <p class="lead mb-0 text-weather-subtle">
+      Quick, weather insights for any city 🌍 with cute weather gifs ❤️ 
+    </p>
+  </header>
+
+  <!-- Main content -->
+  <main class="container my-4 flex-grow-1">
+    <div class="row g-4">
+       
+      <!-- LEFT COLUMN: Image area -->
+      <aside class="col-12 col-lg-4">
+        <section class="weather-card p-3 p-md-4 image-panel">
+          <h2 class="h5 mb-3"></h2>
+            <div class="image-stack" id="random-image-stack"></div>
+
+        </section>
+      </aside>
+
+      <!-- RIGHT COLUMN: Controls + Weather content -->
+      <section class="col-12 col-lg-8">
+        <!-- Search / Controls -->
+        <section class="weather-card mb-4 p-3 p-md-4">
+          <form id="search-form" class="row g-2 align-items-center">
+            <div class="col-12 col-md-6">
+              <input
+                type="text"
+                id="city-input"
+                class="form-control form-control-lg"
+                placeholder="Enter city name (e.g., New York)"
+                required
+              />
+            </div>
+            <div class="col-12 col-md-3 d-grid">
+              <button type="submit" class="btn btn-primary btn-lg">
+                Search
+              </button>
+            </div>
+           
+          </form>
+
+          <p class="small mt-2 mb-0 text-muted">
+            Tip: Try cities like <strong>London</strong>, <strong>Paris</strong>, or
+            <strong>Tokyo</strong>.
+          </p>
+
+          <div id="message" class="mt-2 small"></div>
+        </section>
+
+        <!-- Current Weather -->
+        <section
+          id="current-weather"
+          class="weather-card mb-4 p-3 p-md-4 d-none"
+        >
+          <div class="d-flex justify-content-between align-items-start flex-wrap">
+            <div>
+              <h2 id="current-city" class="h4 mb-1"></h2>
+              <p id="current-date" class="text-muted small mb-3"></p>
+            </div>
+            <div class="text-md-end">
+              <div id="current-description" class="text-capitalize mb-1"></div>
+            </div>
+          </div>
+
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <div class="d-flex align-items-center gap-3">
+              <span id="current-temp" class="display-4 fw-bold"></span>
+              <div class="text-muted">
+                <div>Feels like <span id="current-feels-like"></span></div>
+              </div>
+            </div>
+            <div>
+              <img
+                id="current-icon"
+                alt="Weather icon"
+                class="weather-icon-lg"
+              />
+            </div>
+          </div>
+
+          <div class="row mt-3 gy-2">
+            <div class="col-6 col-md-4">
+              <div class="info-pill">
+                <span class="label">Humidity</span>
+                <span id="current-humidity" class="value"></span>
+              </div>
+            </div>
+            <div class="col-6 col-md-4">
+              <div class="info-pill">
+                <span class="label">Wind</span>
+                <span id="current-wind" class="value"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5 Day Forecast -->
+        <section id="forecast" class="weather-card p-3 p-md-4 d-none">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="h4 mb-0">5-Day Forecast</h2>
+           
+          </div>
+
+          <div id="forecast-grid" class="row g-3 justify-content-center">
+            <!-- Forecast cards from JS -->
+          </div>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-3 text-center text-white-50 small">
+    Built with 🐶❤️ using HTML, CSS, JavaScript &amp; OpenWeatherMap by Jean.
+  </footer>
+
+
+
+  <!-- Your script -->
+  <script src="Assets/js/script.js"></script>
+</body>
+</html>
