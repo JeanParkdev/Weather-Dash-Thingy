@@ -142,10 +142,10 @@ function renderCurrentWeather(data) {
 
 
 function renderForecast(data) {
-  // store latest forecast
+  // store latest forecast so we can re-render on unit toggle
   lastForecastData = data;
 
-  // 5-day forecast: one entry per day around midday
+  // 5-day forecast: pick one "representative" entry per day (near midday)
   const dailyMap = new Map();
 
   data.list.forEach((entry) => {
@@ -154,6 +154,7 @@ function renderForecast(data) {
     const hour = date.getHours();
 
     const current = dailyMap.get(dayKey);
+    // keep the entry whose time is closest to 12:00
     if (!current || Math.abs(hour - 12) < Math.abs(current.hour - 12)) {
       dailyMap.set(dayKey, { ...entry, hour });
     }
@@ -166,21 +167,15 @@ function renderForecast(data) {
     const date = new Date(entry.dt * 1000);
     const dayName = date.toLocaleDateString(undefined, { weekday: "short" });
     const label = index === 0 ? "Today" : dayName;
+
     const iconCode = entry.weather[0].icon;
     const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
-    const max = Math.round(entry.main.temp_max);
-    const min = Math.round(entry.main.temp_min);
-
-    const maxDisplay =
-      currentUnit === "C"
-        ? `${max}°C`
-        : `${Math.round((max * 9) / 5 + 32)}°F`;
-
-    const minDisplay =
-      currentUnit === "C"
-        ? `${min}°C`
-        : `${Math.round((min * 9) / 5 + 32)}°F`;
+    // single representative temp
+    const temp = entry.main.temp;
+    const tempC = Math.round(temp);
+    const tempF = Math.round((temp * 9) / 5 + 32);
+    const displayTemp = currentUnit === "C" ? `${tempC}°C` : `${tempF}°F`;
 
     const col = document.createElement("div");
     col.className = "col-6 col-md-4 col-lg-2";
@@ -193,8 +188,7 @@ function renderForecast(data) {
       <div class="date">${date.toLocaleDateString()}</div>
       <img src="${iconUrl}" alt="${entry.weather[0].description}">
       <div class="temps mt-1">
-        <span class="max">${maxDisplay}</span>
-        <span class="min">${minDisplay}</span>
+        <span class="max">${displayTemp}</span>
       </div>
     `;
 
@@ -204,6 +198,7 @@ function renderForecast(data) {
 
   forecastSection.classList.remove("d-none");
 }
+
 
 
 // ================= Event Handlers =================
